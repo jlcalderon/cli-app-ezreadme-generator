@@ -1,14 +1,26 @@
 {
-  "name": "static-site",
+  "name": "cli-app-ezreadme-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "This app generates a good readme.md file from user's input",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Jorge Calderon",
+  "license": "MIT",
   "dependencies": {
     "inquirer": "^6.3.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlcalderon/cli-app-ezreadme-generator.git"
+  },
+  "keywords": [
+    "Readme",
+    "Generator"
+  ],
+  "bugs": {
+    "url": "https://github.com/jlcalderon/cli-app-ezreadme-generator/issues"
+  },
+  "homepage": "https://github.com/jlcalderon/cli-app-ezreadme-generator#readme"
 }
