@@ -130,10 +130,11 @@ function init() {
             message: questions[8],
             name: "email"
         }
-    ]);
+    ]).then((inquirer) => {
+        //Call function to write readme from prompts
+        writeToFile(inquirer.title, inquirer);
+    });
 
-    //Call function to write readme from prompts
-    writeToFile(inquirer.title, inquirer);
 }
 
 // function call to initialize program
