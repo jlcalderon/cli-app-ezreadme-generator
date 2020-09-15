@@ -21,9 +21,12 @@ const axios = require('axios');
 //Licenses choices array
 const licenses = [];
 //filling array with licenses
+let licenseResponse;
+let lic;
 axios
     .get("https://api.github.com/licenses")
     .then(function(res) {
+        licenseResponse = res.data;
         res.data.forEach(element => {
             licenses.push(element.key);
         });
@@ -35,7 +38,7 @@ const objMarkdown = require('./utils/generateMarkdown');
 
 // function to write README file
 function writeToFile(fileName, data) {
-    const badge = '';
+    let badge = '';
     const expr = data.license;
     switch (expr) {
         case 'agpl-3.0':
@@ -78,7 +81,7 @@ function writeToFile(fileName, data) {
             badge = '[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)';
             break;
         default:
-            console.log(`${expr} is not a license supported`);
+            console.log(`Sorry we are running out of ${expr}`);
     }
     //String template literal of a good readme file
     const goodReadmeTemplate = `${objMarkdown.generateMarkdownH1(data)} ${badge}
@@ -103,6 +106,9 @@ function writeToFile(fileName, data) {
 
         ${objMarkdown.generateMarkdownH2('License')}
         ${data.license}
+        ${lic = licenseResponse.filter( element => element.key === data.license)}
+        [${lic.name}](${lic.url})
+        
 
         
         ${objMarkdown.generateMarkdownH2('Test')}
