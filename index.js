@@ -23,6 +23,7 @@ const licenses = [];
 //filling array with licenses
 let licenseResponse;
 let lic;
+
 axios
     .get("https://api.github.com/licenses")
     .then(function(res) {
@@ -85,41 +86,40 @@ function writeToFile(fileName, data) {
     }
     //String template literal of a good readme file
     const goodReadmeTemplate = `${objMarkdown.generateMarkdownH1(data)} ${badge}
-        
-        ${objMarkdown.generateMarkdownH2('Contents')}
-        ${objMarkdown.generateMarkdownContentLink('Description')}
-        ${objMarkdown.generateMarkdownContentLink('Installation')}
-        ${objMarkdown.generateMarkdownContentLink('Usage')}
-        ${objMarkdown.generateMarkdownContentLink('License')}
-        ${objMarkdown.generateMarkdownContentLink('Contributing')}
-        ${objMarkdown.generateMarkdownContentLink('Test')}
-        ${objMarkdown.generateMarkdownContentLink('Questions')}
-        
-        ${objMarkdown.generateMarkdownH2('Description')}
-        ${data.description}  
-        
-        ${objMarkdown.generateMarkdownH2('Installation')}
-        ${data.installation}
-        
-        ${objMarkdown.generateMarkdownH2('Usage')}
-        ${data.usage}
 
-        ${objMarkdown.generateMarkdownH2('License')}
-        ${data.license}
-        ${lic = licenseResponse.filter( element => element.key === data.license)}
-        [${lic.name}](${lic.url})
-        
+${objMarkdown.generateMarkdownH2('Contents')}
+${objMarkdown.generateMarkdownContentLink('Description')}
+${objMarkdown.generateMarkdownContentLink('Installation')}
+${objMarkdown.generateMarkdownContentLink('Usage')}
+${objMarkdown.generateMarkdownContentLink('License')}
+${objMarkdown.generateMarkdownContentLink('Contributing')}
+${objMarkdown.generateMarkdownContentLink('Test')}
+${objMarkdown.generateMarkdownContentLink('Questions')}
 
-        
-        ${objMarkdown.generateMarkdownH2('Test')}
-        ${data.test}
+${objMarkdown.generateMarkdownH2('Description')}
+${data.description}  
 
-        ${objMarkdown.generateMarkdownH2('Contributing')}
-        ${data.contributing}
+${objMarkdown.generateMarkdownH2('Installation')}
+${data.installation}
 
-        ${objMarkdown.generateMarkdownH2('Questions')}
-        contact: <${data.email}>
-        Reach out @ [Github](https://github.com/${data.github})`;
+${objMarkdown.generateMarkdownH2('Usage')}
+${data.usage}
+
+${objMarkdown.generateMarkdownH2('License')}
+${data.license}
+[${lic.name}](${lic.url})
+
+
+
+${objMarkdown.generateMarkdownH2('Test')}
+${data.test}
+
+${objMarkdown.generateMarkdownH2('Contributing')}
+${data.contributing}
+
+${objMarkdown.generateMarkdownH2('Questions')}
+contact: <${data.email}>
+Reach out @ [Github](https://github.com/${data.github})`;
 
     //Write the readme.md file to the system
     fs.writeFile(`${fileName}.md`, goodReadmeTemplate, 'utf8', (err) => {
@@ -183,6 +183,7 @@ function init() {
         }
     ]).then((inquirer) => {
         //Call function to write readme from prompts
+        lic = licenseResponse.filter((element) => element.key === inquirer.license);
         writeToFile(inquirer.title, inquirer);
     });
 
