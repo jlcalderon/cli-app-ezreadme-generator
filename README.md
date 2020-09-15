@@ -28,7 +28,7 @@ mit
 [Repository](https://github.com/jlcalderon/cli-app-ezreadme-generator)
 
 ## Demo
-![Demo](https://drive.google.com/file/d/14vhbVNSrM52jglLg_IhnRoocsW8EZkI7/view)
+[Demo](https://drive.google.com/file/d/14vhbVNSrM52jglLg_IhnRoocsW8EZkI7/view)
 
 ## Contributing
 You can *fork*, *clone* and make your changes in your branch and then make a pull request to merge your changes.
